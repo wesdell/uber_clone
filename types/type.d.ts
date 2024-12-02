@@ -70,6 +70,12 @@ declare interface ButtonProps extends TouchableOpacityProps {
   className?: string;
 }
 
+declare interface FormProps {
+  name?: string;
+  email: string;
+  password: string;
+}
+
 declare interface GoogleInputProps {
   icon?: string;
   initialLocation?: string;
