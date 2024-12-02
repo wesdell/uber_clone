@@ -31,6 +31,23 @@ import onboarding1 from "@/assets/images/onboarding1.png";
 import onboarding2 from "@/assets/images/onboarding2.png";
 import onboarding3 from "@/assets/images/onboarding3.png";
 import signUpCar from "@/assets/images/signup-car.png";
+import { BgVariantKey, TextVariantKey } from "@/types/type";
+
+export const bgVariants: Record<BgVariantKey, string> = {
+  primary: "bg-[#0286FF]",
+  secondary: "bg-gray-500",
+  success: "bg-green-500",
+  danger: "bg-red-500",
+  outline: "bg-transparent border-neutral-300 border-[0.5px]",
+};
+
+export const textVariants: Record<TextVariantKey, string> = {
+  primary: "text-black",
+  secondary: "text-gray-100",
+  success: "text-green-100",
+  danger: "text-red-100",
+  default: "text-white",
+};
 
 export const images = {
   onboarding1,

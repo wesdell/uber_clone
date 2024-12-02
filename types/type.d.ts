@@ -53,10 +53,18 @@ declare interface Ride {
   };
 }
 
+type BgVariantKey = "primary" | "secondary" | "success" | "danger" | "outline";
+type TextVariantKey =
+  | "primary"
+  | "secondary"
+  | "success"
+  | "danger"
+  | "default";
+
 declare interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  bgVariant?: "primary" | "secondary" | "danger" | "outline" | "success";
-  textVariant?: "primary" | "default" | "secondary" | "danger" | "success";
+  bgVariant?: BgVariantKey;
+  textVariant?: TextVariantKey;
   IconLeft?: React.ComponentType<any>;
   IconRight?: React.ComponentType<any>;
   className?: string;
