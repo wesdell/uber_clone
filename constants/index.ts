@@ -38,7 +38,7 @@ export const bgVariants: Record<BgVariantKey, string> = {
   secondary: "bg-gray-500",
   success: "bg-green-500",
   danger: "bg-red-500",
-  outline: "bg-transparent border-neutral-300 border-[0.5px]",
+  outline: "bg-transparent border border-neutral-100 border-[0.5px]",
 };
 
 export const textVariants: Record<TextVariantKey, string> = {

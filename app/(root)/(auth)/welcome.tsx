@@ -57,7 +57,7 @@ export default function Welcome() {
             : swiperRef.current?.scrollBy(1)
         }
         title={isLastSlide ? "Get Started" : "Next"}
-        className="w-11/12 mt-10"
+        className="w-4/5 mt-10"
       />
     </SafeAreaView>
   );
