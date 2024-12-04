@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Image, View, ScrollView, Text } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import { useSignIn } from "@clerk/clerk-expo";
 import { icons, images } from "@/constants";
 import InputField from "@/components/InputField";
 import CustomButton from "@/components/CustomButton";
@@ -8,12 +9,34 @@ import OAuth from "@/components/OAuth";
 import { FormProps } from "@/types/type";
 
 export default function SignIn() {
+  const router = useRouter();
+  const { signIn, setActive, isLoaded } = useSignIn();
   const [form, setForm] = useState<FormProps>({
     email: "",
     password: "",
   });
 
-  const onSignInPress = async () => {};
+  const onSignInPress = useCallback(async () => {
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      const signInAttempt = await signIn.create({
+        identifier: form.email,
+        password: form.password,
+      });
+
+      if (signInAttempt.status === "complete") {
+        await setActive({ session: signInAttempt.createdSessionId });
+        router.replace("/");
+      } else {
+        console.error(JSON.stringify(signInAttempt, null, 2));
+      }
+    } catch (err: any) {
+      console.error(JSON.stringify(err, null, 2));
+    }
+  }, [isLoaded, form.email, form.password]);
 
   return (
     <ScrollView className="flex-1 bg-white">
@@ -28,7 +51,7 @@ export default function SignIn() {
           <InputField
             label="Email"
             value={form.email}
-            onChange={(value) => setForm({ ...form, email: value })}
+            onChangeText={(value) => setForm({ ...form, email: value })}
             placeholder="Enter your email"
             icon={icons.email}
           />
@@ -36,7 +59,7 @@ export default function SignIn() {
             label="Password"
             value={form.password}
             secureTextEntry={true}
-            onChange={(value) => setForm({ ...form, password: value })}
+            onChangeText={(value) => setForm({ ...form, password: value })}
             placeholder="Enter your password"
             icon={icons.lock}
           />
