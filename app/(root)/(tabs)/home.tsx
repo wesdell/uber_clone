@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   FlatList,
@@ -8,20 +8,48 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
+import * as Location from "expo-location";
 import { useUser } from "@clerk/clerk-expo";
 import { ridesMock } from "@/mocks/ride";
 import { icons, images } from "@/constants";
 import RideCard from "@/components/RideCard";
 import GoogleTextInput from "@/components/GoogleTextInput";
 import Map from "@/components/Map";
+import { useLocationStore } from "@/store";
 
 export default function Home() {
+  const { setUserLocation, setDestinationLocation } = useLocationStore();
   const { user } = useUser();
+  const [hasPermissions, setHasPermissions] = useState(false);
   const loading = false;
 
   const handleSignOut = () => {};
 
   const handleDestinationPress = () => {};
+
+  useEffect(() => {
+    const requestLocation = async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setHasPermissions(false);
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync();
+      const address = await Location.reverseGeocodeAsync({
+        latitude: location.coords?.latitude!,
+        longitude: location.coords?.longitude!,
+      });
+
+      setUserLocation({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        address: `${address[0].name} ${address[0].region}`,
+      });
+    };
+
+    requestLocation();
+  }, [setUserLocation]);
 
   return (
     <SafeAreaView className="bg-general-500">
