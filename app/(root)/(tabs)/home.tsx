@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 import { useUser } from "@clerk/clerk-expo";
+import { router } from "expo-router";
 import { ridesMock } from "@/mocks/ride";
 import { icons, images } from "@/constants";
 import RideCard from "@/components/RideCard";
@@ -25,7 +26,14 @@ export default function Home() {
 
   const handleSignOut = () => {};
 
-  const handleDestinationPress = () => {};
+  const handleDestinationPress = (location: {
+    latitude: number;
+    longitude: number;
+    address: string;
+  }) => {
+    setDestinationLocation(location);
+    router.push("/(root)/find-ride");
+  };
 
   useEffect(() => {
     const requestLocation = async () => {
