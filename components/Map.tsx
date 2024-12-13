@@ -23,6 +23,8 @@ const Map = ({ height }: { height: number }) => {
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
   useEffect(() => {
+    setDrivers(driversMock);
+
     if (Array.isArray(driversMock)) {
       if (!userLatitude || !userLongitude) {
         return;
