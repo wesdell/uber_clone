@@ -35,7 +35,7 @@ const RideLayout = ({
               {title || "Go back"}
             </Text>
           </View>
-          <Map height={300} />
+          <Map height={700} />
         </View>
         <BottomSheet
           ref={bottomSheetRef}
