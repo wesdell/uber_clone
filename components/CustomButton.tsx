@@ -8,7 +8,7 @@ const getBgVariantStyle = (variant?: ButtonProps["bgVariant"]) =>
 const getTextVariantStyle = (variant?: ButtonProps["textVariant"]) =>
   variant ? textVariants[variant] : textVariants.default;
 
-const CustomButton = ({
+export const CustomButton = ({
   onPress,
   title,
   bgVariant = "primary",
@@ -31,5 +31,3 @@ const CustomButton = ({
     {IconRight && <IconRight />}
   </TouchableOpacity>
 );
-
-export default CustomButton;

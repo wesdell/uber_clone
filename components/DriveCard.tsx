@@ -1,10 +1,10 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import { formatTime } from "@/utils";
 import { icons } from "@/constants";
-import { formatTime } from "@/utils/time";
 import { DriverCardProps } from "@/types/type";
 
-const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
+export const DriveCard = ({ item, selected, setSelected }: DriverCardProps) => {
   return (
     <TouchableOpacity
       onPress={setSelected}
@@ -40,7 +40,7 @@ const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
           </Text>
 
           <Text className="text-sm font-JakartaRegular text-general-800">
-            {formatTime(item?.time!)}
+            {formatTime(parseInt(`${item?.time!}`))}
           </Text>
 
           <Text className="text-sm font-JakartaRegular text-general-800 mx-1">
@@ -61,5 +61,3 @@ const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
     </TouchableOpacity>
   );
 };
-
-export default DriverCard;

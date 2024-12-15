@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { InputFieldProps } from "@/types/type";
 
-const InputField = ({
+export const InputField = ({
   label,
   secureTextEntry = false,
   containerStyle,
@@ -44,5 +44,3 @@ const InputField = ({
     </TouchableWithoutFeedback>
   </KeyboardAvoidingView>
 );
-
-export default InputField;

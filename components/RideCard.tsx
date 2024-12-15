@@ -1,9 +1,9 @@
 import { Image, Text, View } from "react-native";
-import { Ride } from "@/types/type";
+import { formatDate, formatTime } from "@/utils";
 import { icons } from "@/constants";
-import { formatDate, formatTime } from "@/utils/time";
+import { Ride } from "@/types/type";
 
-const RideCard = ({ ride }: { ride: Ride }) => {
+export const RideCard = ({ ride }: { ride: Ride }) => {
   return (
     <View className="flex flex-row items-center justify-center bg-white rounded-lg shadow-sm shadow-neutral-300 mb-3">
       <View className="flex flex-col items-center justify-center p-3">
@@ -69,5 +69,3 @@ const RideCard = ({ ride }: { ride: Ride }) => {
     </View>
   );
 };
-
-export default RideCard;

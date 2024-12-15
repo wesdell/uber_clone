@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { router } from "expo-router";
 import Swiper from "react-native-swiper";
+import { router } from "expo-router";
+import { CustomButton } from "@/components";
 import { welcome } from "@/constants";
-import CustomButton from "@/components/CustomButton";
 
 export default function Welcome() {
   const swiperRef = useRef<Swiper>(null);
@@ -15,7 +15,7 @@ export default function Welcome() {
     <SafeAreaView className="flex h-full items-center justify-between bg-white">
       <TouchableOpacity
         onPress={() => {
-          router.replace("/(auth)/sign-up");
+          router.replace("/(root)/(auth)/sign-up");
         }}
         className="w-full flex justify-end items-end p-5"
       >
@@ -53,7 +53,7 @@ export default function Welcome() {
       <CustomButton
         onPress={() =>
           isLastSlide
-            ? router.replace("/(auth)/sign-up")
+            ? router.replace("/(root)/(auth)/sign-up")
             : swiperRef.current?.scrollBy(1)
         }
         title={isLastSlide ? "Get Started" : "Next"}

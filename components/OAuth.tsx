@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { Image, Text, View } from "react-native";
-import { useOAuth } from "@clerk/clerk-expo";
 import { router } from "expo-router";
-import CustomButton from "@/components/CustomButton";
+import { useOAuth } from "@clerk/clerk-expo";
+import { googleOAuth } from "@/lib";
+import { CustomButton } from "@/components";
 import { icons } from "@/constants";
-import { googleOAuth } from "@/lib/auth";
 
-const OAuth = () => {
+export const OAuth = () => {
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
 
   const handleGoogleSignIn = useCallback(async () => {
@@ -45,5 +45,3 @@ const OAuth = () => {
     </View>
   );
 };
-
-export default OAuth;

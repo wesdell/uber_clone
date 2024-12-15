@@ -2,10 +2,8 @@ import { useCallback, useState } from "react";
 import { Image, View, ScrollView, Text } from "react-native";
 import { Link, useRouter } from "expo-router";
 import { useSignIn } from "@clerk/clerk-expo";
+import { CustomButton, InputField, OAuth } from "@/components";
 import { icons, images } from "@/constants";
-import InputField from "@/components/InputField";
-import CustomButton from "@/components/CustomButton";
-import OAuth from "@/components/OAuth";
 import { FormProps } from "@/types/type";
 
 export default function SignIn() {

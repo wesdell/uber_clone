@@ -9,14 +9,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import * as Location from "expo-location";
-import { useAuth, useUser } from "@clerk/clerk-expo";
 import { router } from "expo-router";
-import { icons, images } from "@/constants";
-import RideCard from "@/components/RideCard";
-import GoogleTextInput from "@/components/GoogleTextInput";
-import Map from "@/components/Map";
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import { useLocationStore } from "@/store";
-import { useFetch } from "@/lib/fetch";
+import { useFetch } from "@/lib";
+import { GoogleTextInput, Map, RideCard } from "@/components";
+import { icons, images } from "@/constants";
 
 export default function Home() {
   const { signOut } = useAuth();

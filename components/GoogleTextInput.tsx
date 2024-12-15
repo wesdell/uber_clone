@@ -1,12 +1,12 @@
 import { View, Image } from "react-native";
 import "react-native-get-random-values";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { GoogleInputProps } from "@/types/type";
 import { icons } from "@/constants";
+import { GoogleInputProps } from "@/types/type";
 
 const googlePlacesApiKey = process.env.EXPO_PUBLIC_GOOGLE_API_KEY;
 
-const GoogleTextInput = ({
+export const GoogleTextInput = ({
   icon,
   initialLocation,
   containerStyle,
@@ -78,5 +78,3 @@ const GoogleTextInput = ({
     </View>
   );
 };
-
-export default GoogleTextInput;

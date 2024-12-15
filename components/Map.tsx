@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
-import { icons } from "@/constants";
-import { useFetch } from "@/lib/fetch";
-import {
-  calculateDriverTimes,
-  calculateRegion,
-  generateMarkersFromData,
-} from "@/lib/map";
 import { useDriverStore, useLocationStore } from "@/store";
+import {
+  calculateRegion,
+  calculateDriverTimes,
+  generateMarkersFromData,
+  useFetch,
+} from "@/lib";
+import { icons } from "@/constants";
 import { Driver, MarkerData } from "@/types/type";
 
-const Map = ({ height }: { height: number }) => {
+export const Map = ({ height }: { height: number }) => {
   const {
     userLongitude,
     userLatitude,
@@ -89,7 +89,7 @@ const Map = ({ height }: { height: number }) => {
       showsUserLocation={true}
       userInterfaceStyle="light"
     >
-      {markers.map((marker, index) => (
+      {markers.map((marker) => (
         <Marker
           key={marker.id}
           coordinate={{
@@ -132,5 +132,3 @@ const Map = ({ height }: { height: number }) => {
     </MapView>
   );
 };
-
-export default Map;

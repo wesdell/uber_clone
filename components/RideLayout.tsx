@@ -1,12 +1,12 @@
 import { useRef } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { router } from "expo-router";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import Map from "@/components/Map";
+import { router } from "expo-router";
+import { Map } from "@/components";
 import { icons } from "@/constants";
 
-const RideLayout = ({
+export const RideLayout = ({
   children,
   snapPoints,
   title,
@@ -50,5 +50,3 @@ const RideLayout = ({
     </GestureHandlerRootView>
   );
 };
-
-export default RideLayout;

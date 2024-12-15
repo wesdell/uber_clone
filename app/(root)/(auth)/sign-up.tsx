@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Image, View, ScrollView, Text } from "react-native";
+import { ReactNativeModal } from "react-native-modal";
 import { Link, useRouter } from "expo-router";
 import { useSignUp } from "@clerk/clerk-expo";
+import { fetchAPI } from "@/lib";
+import { CustomButton, InputField, OAuth } from "@/components/";
 import { icons, images } from "@/constants";
-import InputField from "@/components/InputField";
-import CustomButton from "@/components/CustomButton";
-import OAuth from "@/components/OAuth";
 import { FormProps } from "@/types/type";
-import { ReactNativeModal } from "react-native-modal";
-import { fetchAPI } from "@/lib/fetch";
 
 export default function SignUp() {
   const router = useRouter();

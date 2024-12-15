@@ -2,9 +2,9 @@ import React from "react";
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useUser } from "@clerk/clerk-expo";
-import RideCard from "@/components/RideCard";
+import { useFetch } from "@/lib";
+import { RideCard } from "@/components";
 import { images } from "@/constants";
-import { useFetch } from "@/lib/fetch";
 import { Ride } from "@/types/type";
 
 const Rides = () => {

@@ -1,7 +1,7 @@
 import { Image, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useUser } from "@clerk/clerk-expo";
-import InputField from "@/components/InputField";
+import { InputField } from "@/components";
 
 export default function Profile() {
   const { user } = useUser();

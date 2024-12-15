@@ -1,10 +1,8 @@
 import { Text, View } from "react-native";
 import { router } from "expo-router";
 import { useLocationStore } from "@/store";
+import { CustomButton, GoogleTextInput, RideLayout } from "@/components";
 import { icons } from "@/constants";
-import RideLayout from "@/components/RideLayout";
-import GoogleTextInput from "@/components/GoogleTextInput";
-import CustomButton from "@/components/CustomButton";
 
 export default function FindRide() {
   const {

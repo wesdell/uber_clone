@@ -1,12 +1,11 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
-import { useUser } from "@clerk/clerk-expo";
 import { StripeProvider } from "@stripe/stripe-react-native";
-import RideLayout from "@/components/RideLayout";
-import Payment from "@/components/Payment";
-import { icons } from "@/constants";
-import { formatTime } from "@/utils/time";
+import { useUser } from "@clerk/clerk-expo";
 import { useDriverStore, useLocationStore } from "@/store";
+import { formatTime } from "@/utils";
+import { RideLayout, Payment } from "@/components";
+import { icons } from "@/constants";
 
 const BookRide = () => {
   const { user } = useUser();
@@ -20,7 +19,7 @@ const BookRide = () => {
   return (
     <StripeProvider
       publishableKey={process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY!}
-      merchantIdentifier="merchant.uber.com"
+      merchantIdentifier="merchant.com.uber"
       urlScheme="myapp"
     >
       <RideLayout title="Book Ride">
@@ -59,7 +58,7 @@ const BookRide = () => {
             <View className="flex flex-row items-center justify-between w-full border-b border-white py-3">
               <Text className="text-lg font-JakartaRegular">Pickup Time</Text>
               <Text className="text-lg font-JakartaRegular">
-                {formatTime(parseInt(`${driverDetails.time!}`))}
+                {formatTime(driverDetails?.time!)}
               </Text>
             </View>
             <View className="flex flex-row items-center justify-between w-full py-3">

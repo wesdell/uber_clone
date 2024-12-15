@@ -7,27 +7,32 @@ export async function POST(request: Request) {
   const { name, email, amount } = body;
 
   if (!name || !email || !amount) {
-    return new Response(
-      JSON.stringify({
-        error: "Please enter a valid email address",
-        status: 400,
-      }),
-    );
+    return new Response(JSON.stringify({ error: "Missing required fields" }), {
+      status: 400,
+    });
   }
 
   let customer;
+  const doesCustomerExist = await stripe.customers.list({
+    email,
+  });
 
-  const existingCustomer = await stripe.customers.list({ email });
-  if (existingCustomer.data.length > 0) {
-    customer = existingCustomer.data[0];
+  if (doesCustomerExist.data.length > 0) {
+    customer = doesCustomerExist.data[0];
   } else {
-    customer = await stripe.customers.create({ name, email });
+    const newCustomer = await stripe.customers.create({
+      name,
+      email,
+    });
+
+    customer = newCustomer;
   }
 
   const ephemeralKey = await stripe.ephemeralKeys.create(
     { customer: customer.id },
-    { apiVersion: "2022-08-01" },
+    { apiVersion: "2024-06-20" },
   );
+
   const paymentIntent = await stripe.paymentIntents.create({
     amount: parseInt(amount) * 100,
     currency: "usd",
