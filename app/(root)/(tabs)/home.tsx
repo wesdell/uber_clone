@@ -9,22 +9,26 @@ import {
   TouchableOpacity,
 } from "react-native";
 import * as Location from "expo-location";
-import { useUser } from "@clerk/clerk-expo";
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import { router } from "expo-router";
-import { ridesMock } from "@/mocks/ride";
 import { icons, images } from "@/constants";
 import RideCard from "@/components/RideCard";
 import GoogleTextInput from "@/components/GoogleTextInput";
 import Map from "@/components/Map";
 import { useLocationStore } from "@/store";
+import { useFetch } from "@/lib/fetch";
 
 export default function Home() {
+  const { signOut } = useAuth();
   const { setUserLocation, setDestinationLocation } = useLocationStore();
   const { user } = useUser();
+  const { data: recentRides, loading } = useFetch(`/(api)/ride/${user?.id}`);
   const [hasPermissions, setHasPermissions] = useState(false);
-  const loading = false;
 
-  const handleSignOut = () => {};
+  const handleSignOut = () => {
+    signOut();
+    router.replace("/(root)/(auth)/sign-in");
+  };
 
   const handleDestinationPress = (location: {
     latitude: number;
@@ -62,7 +66,7 @@ export default function Home() {
   return (
     <SafeAreaView className="bg-general-500">
       <FlatList
-        data={ridesMock?.slice(0, 5)}
+        data={recentRides?.slice(0, 5)}
         renderItem={({ item }) => <RideCard key={item.ride_id} ride={item} />}
         className="px-5"
         keyboardShouldPersistTaps="handled"
