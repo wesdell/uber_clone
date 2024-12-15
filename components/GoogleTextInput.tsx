@@ -31,9 +31,7 @@ const GoogleTextInput = ({
             shadowColor: "#d4d4d4",
           },
           textInput: {
-            backgroundColor: textInputBackgroundColor
-              ? textInputBackgroundColor
-              : "white",
+            backgroundColor: textInputBackgroundColor || "white",
             fontSize: 16,
             fontWeight: "600",
             marginTop: 5,
